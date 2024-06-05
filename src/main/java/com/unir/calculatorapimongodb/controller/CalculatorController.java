@@ -1,8 +1,7 @@
 package com.unir.calculatorapimongodb.controller;
 
-import com.unir.calculatorapimongodb.model.AdditionSubtractionResult;
-import com.unir.calculatorapimongodb.model.Result;
-import com.unir.calculatorapimongodb.model.request.AdditionSubtractionRequest;
+import com.unir.calculatorapimongodb.model.*;
+import com.unir.calculatorapimongodb.model.request.*;
 import com.unir.calculatorapimongodb.service.CalculatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,25 @@ public class CalculatorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.subtract(request));
     }
 
+    @PostMapping("/multiplications")
+    public ResponseEntity<MultiplicationResult> multiply(@RequestBody MultiplicationRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.multiply(request));
+    }
 
+    @PostMapping("/divisions")
+    public ResponseEntity<DivisionResult> divide(@RequestBody DivisionRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.divide(request));
+    }
+
+    @PostMapping("/roots")
+    public ResponseEntity<RootResult> divide(@RequestBody RootRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.root(request));
+    }
+
+    @PostMapping("/powers")
+    public ResponseEntity<PowerResult> power(@RequestBody PowerRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.power(request));
+    }
 
     @GetMapping("/operations")
     public ResponseEntity<List<Result>> getOperations(){
